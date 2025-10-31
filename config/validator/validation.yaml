@@ -1,0 +1,52 @@
+App\Entity\Location:
+    properties:
+        city:
+            - Length:
+                  min: 3
+                  max: 255
+                  minMessage: "City name is too short - it should have at least {{ limit }} characters."
+                  maxMessage: "City name is too long - it can contain up to {{ limit }} characters."
+                  groups: [create, edit]
+        latitude:
+            - Range:
+                  min: -90
+                  max: 90
+                  notInRangeMessage: "Latitude value must be between {{ min }} and {{ max }}."
+                  groups: [create, edit]
+        longitude:
+            - Range:
+                  min: -180
+                  max: 180
+                  notInRangeMessage: "Longitude value must be between{{ min }} and {{ max }}."
+                  groups: [create, edit]
+
+App\Entity\Measurement:
+    properties:
+        date:
+            - NotBlank:
+                  message: "Date cannot be empty"
+                  groups: [create, edit]
+        celsius:
+            - Range:
+                  min: -50
+                  max: 60
+                  notInRangeMessage: "Temperature must be between {{ min }} and {{ max }} °C."
+                  groups: [create, edit]
+        humidity:
+            -   Range:
+                    min: 0
+                    max: 100
+                    notInRangeMessage: "Humidity must be between {{ min }}% and {{ max }}%."
+                    groups: [ create, edit ]
+        pressure:
+            - Range:
+                  min: 870
+                  max: 1085
+                  notInRangeMessage: "Pressure must be between {{ min }} and {{ max }} hPa."
+                  groups: [create, edit]
+        precipitation:
+            -   Range:
+                    min: 0
+                    max: 500
+                    notInRangeMessage: "Precipitation must be between {{ min }} and {{ max }} mm."
+                    groups: [ create, edit ]
